@@ -9,7 +9,7 @@ Github:         https://github.com/adeelahmad84
 Description:    Twitter API settings script.
 """
 
-import unittest
+#import unittest
 
 TWITTER = {
     "CONSUMER_KEY": "pLm9eKGAVqNY3f4x9SV3Ex50O",

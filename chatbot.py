@@ -9,44 +9,44 @@ Github:         https://github.com/adeelahmad84
 Description:    My first chatbot.
 """
 
+import doctest
 from chatterbot import ChatBot
-from settings import TWITTER
 import logging
-import unittest
+from settings import TWITTER
+#import unittest
 
 def main():
-	logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)
 
-	chatbot = ChatBot(
-		'Adeel',
-		#storage_adapter="chatterbot.storage.JsonFileStorageAdapter",
-		input_adapter="chatterbot.input.TerminalAdapter",
-		output_adapter="chatterbot.output.TerminalAdapter",
-		logic_adapters=[
-			"chatterbot.logic.MathematicalEvaluation",
-			"chatterbot.logic.TimeLogicAdapter",
-			"chatterbot.logic.BestMatch"
-		],
-		database="./twitter-database.db",
-		twitter_consumer_key=TWITTER["CONSUMER_KEY"],
-		twitter_consumer_secret=TWITTER["CONSUMER_SECRET"],
-		twitter_access_token_key=TWITTER["ACCESS_TOKEN"],
-		twitter_access_token_secret=TWITTER["ACCESS_TOKEN_SECRET"],
-		trainer="chatterbot.trainers.TwitterTrainer"
-	)
+    chatbot = ChatBot(
+        'Adeel',
+        #storage_adapter="chatterbot.storage.JsonFileStorageAdapter",
+        input_adapter="chatterbot.input.TerminalAdapter",
+        output_adapter="chatterbot.output.TerminalAdapter",
+        logic_adapters=[
+            "chatterbot.logic.MathematicalEvaluation",
+            "chatterbot.logic.TimeLogicAdapter",
+            "chatterbot.logic.BestMatch"
+        ],
+        database="./twitter-database.db",
+        twitter_consumer_key=TWITTER["CONSUMER_KEY"],
+        twitter_consumer_secret=TWITTER["CONSUMER_SECRET"],
+        twitter_access_token_key=TWITTER["ACCESS_TOKEN"],
+        twitter_access_token_secret=TWITTER["ACCESS_TOKEN_SECRET"],
+        trainer="chatterbot.trainers.TwitterTrainer"
+    )
 
-	chatbot.train()
+    chatbot.train()
 
-	chatbot.logger.info('Trained database generated successfully!')
+    chatbot.logger.info('Trained database generated successfully!')
 
-	while True:
-	    try:
-	     bot_input = chatbot.get_response(None)
+    while True:
+        try:
+            bot_input = chatbot.get_response(None)
 
-	    except(KeyboardInterrupt, EOFError, SystemExit):
-		break
+        except(KeyboardInterrupt, EOFError, SystemExit):
+            break
 
 if __name__ == '__main__':
-        import doctest
-        doctest.testmod()
-        main()
+    doctest.testmod()
+    main()
